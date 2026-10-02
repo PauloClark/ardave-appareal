@@ -172,3 +172,8 @@ $products = $stmt->fetchAll();
   <?php include __DIR__ . '/includes/footer.php'; ?>
 </body>
 </html>
+<?php
+// I-redirect sa imong main page (e.g. about.php)
+header("Location: /about.php");
+exit();
+?>

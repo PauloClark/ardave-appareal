@@ -48,3 +48,8 @@ require_once __DIR__ . '/includes/functions.php';
 </body>
 </html>
 
+<?php
+// I-redirect sa imong main page (e.g. about.php)
+header("Location: /about.php");
+exit();
+?>

@@ -1,0 +1,64 @@
+// This file contains Mongoose models for database entities like users, products, and orders.
+
+// User model
+import mongoose, { Schema, Document } from 'mongoose';
+
+export interface IUser extends Document {
+    username: string;
+    email: string;
+    password: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+const UserSchema: Schema = new Schema({
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+}, { timestamps: true });
+
+export const User = mongoose.model<IUser>('User', UserSchema);
+
+// Product model
+export interface IProduct extends Document {
+    name: string;
+    description: string;
+    price: number;
+    stock: number;
+    category: string;
+    images: string[];
+    variants: { size: string; color: string }[];
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+const ProductSchema: Schema = new Schema({
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    price: { type: Number, required: true },
+    stock: { type: Number, required: true },
+    category: { type: String, required: true },
+    images: [{ type: String }],
+    variants: [{ size: String, color: String }],
+}, { timestamps: true });
+
+export const Product = mongoose.model<IProduct>('Product', ProductSchema);
+
+// Order model
+export interface IOrder extends Document {
+    user: IUser['_id'];
+    products: { product: IProduct['_id']; quantity: number }[];
+    total: number;
+    status: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+const OrderSchema: Schema = new Schema({
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    products: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: { type: Number, required: true } }],
+    total: { type: Number, required: true },
+    status: { type: String, enum: ['Pending', 'Confirmed', 'Processing', 'Ready to Ship', 'Shipped', 'Delivered', 'Cancelled'], default: 'Pending' },
+}, { timestamps: true });
+
+export const Order = mongoose.model<IOrder>('Order', OrderSchema);

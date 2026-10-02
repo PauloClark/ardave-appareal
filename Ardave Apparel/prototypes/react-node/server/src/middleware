@@ -1,0 +1,33 @@
+// This file contains middleware functions for handling requests and responses in the ARDAVE APPAREL server application.
+
+// Import necessary modules
+import { Request, Response, NextFunction } from 'express';
+
+// Middleware for logging requests
+export const requestLogger = (req: Request, res: Response, next: NextFunction) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+};
+
+// Middleware for handling errors
+export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+};
+
+// Middleware for checking authentication
+export const checkAuth = (req: Request, res: Response, next: NextFunction) => {
+    // Implement authentication check logic here
+    const isAuthenticated = true; // Replace with actual authentication logic
+    if (isAuthenticated) {
+        next();
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+};
+
+// Middleware for parsing JSON bodies
+export const jsonParser = (req: Request, res: Response, next: NextFunction) => {
+    // Implement JSON parsing logic here
+    next();
+};

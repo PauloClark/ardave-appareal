@@ -1,0 +1,71 @@
+// This file contains controller logic for handling business operations related to users, products, orders, and cart functionality.
+
+import { Request, Response } from 'express';
+import User from '../models/User';
+import Product from '../models/Product';
+import Order from '../models/Order';
+
+// User Controller
+export const registerUser = async (req: Request, res: Response) => {
+    // Logic for user registration
+};
+
+export const loginUser = async (req: Request, res: Response) => {
+    // Logic for user login
+};
+
+export const logoutUser = async (req: Request, res: Response) => {
+    // Logic for user logout
+};
+
+export const getUserProfile = async (req: Request, res: Response) => {
+    // Logic for fetching user profile
+};
+
+// Product Controller
+export const getProducts = async (req: Request, res: Response) => {
+    // Logic for fetching all products
+};
+
+export const getProductDetails = async (req: Request, res: Response) => {
+    // Logic for fetching product details by ID
+};
+
+// Cart Controller
+export const addToCart = async (req: Request, res: Response) => {
+    // Logic for adding items to the cart
+};
+
+export const updateCart = async (req: Request, res: Response) => {
+    // Logic for updating cart items
+};
+
+export const removeFromCart = async (req: Request, res: Response) => {
+    // Logic for removing items from the cart
+};
+
+// Order Controller
+export const createOrder = async (req: Request, res: Response) => {
+    // Logic for creating a new order
+};
+
+export const getOrderDetails = async (req: Request, res: Response) => {
+    // Logic for fetching order details by ID
+};
+
+export const trackOrder = async (req: Request, res: Response) => {
+    // Logic for tracking an order
+};
+
+// Admin Controller
+export const manageProducts = async (req: Request, res: Response) => {
+    // Logic for managing products (add, edit, delete)
+};
+
+export const manageOrders = async (req: Request, res: Response) => {
+    // Logic for managing orders
+};
+
+export const manageUsers = async (req: Request, res: Response) => {
+    // Logic for managing users
+};

@@ -1,0 +1,4 @@
+# Credentials and obsolete OTP stores must never be served by Apache.
+<FilesMatch "^(\.env.*|otp_store\.json)$">
+    Require all denied
+</FilesMatch>

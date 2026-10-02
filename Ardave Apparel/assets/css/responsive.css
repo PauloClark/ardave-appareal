@@ -1,0 +1,57 @@
+/* Responsive utilities and breakpoint helpers */
+
+/* Global breakpoint classes */
+
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+@media (max-width: 1080px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+}
+
+@media (max-width: 860px) {
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .hide-sm {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: calc(100% - 20px);
+  }
+
+  .section-padding {
+    padding: 28px 0;
+  }
+
+  .text-center-sm {
+    text-align: center;
+  }
+}
+
+.image-fluid {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.img-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+

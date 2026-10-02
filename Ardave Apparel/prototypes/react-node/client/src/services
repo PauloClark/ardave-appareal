@@ -1,0 +1,97 @@
+// This file contains service functions for handling API requests and business logic related to the ARDAVE APPAREL e-commerce application.
+
+import axios from 'axios';
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+
+// Authentication services
+export const registerUser = async (userData) => {
+    const response = await axios.post(`${API_URL}/auth/register`, userData);
+    return response.data;
+};
+
+export const loginUser = async (credentials) => {
+    const response = await axios.post(`${API_URL}/auth/login`, credentials);
+    return response.data;
+};
+
+export const logoutUser = async () => {
+    const response = await axios.post(`${API_URL}/auth/logout`);
+    return response.data;
+};
+
+// Product services
+export const fetchProducts = async () => {
+    const response = await axios.get(`${API_URL}/products`);
+    return response.data;
+};
+
+export const fetchProductDetails = async (productId) => {
+    const response = await axios.get(`${API_URL}/products/${productId}`);
+    return response.data;
+};
+
+// Cart services
+export const addToCart = async (item) => {
+    const response = await axios.post(`${API_URL}/cart`, item);
+    return response.data;
+};
+
+export const fetchCartItems = async () => {
+    const response = await axios.get(`${API_URL}/cart`);
+    return response.data;
+};
+
+export const updateCartItem = async (itemId, quantity) => {
+    const response = await axios.put(`${API_URL}/cart/${itemId}`, { quantity });
+    return response.data;
+};
+
+export const removeCartItem = async (itemId) => {
+    const response = await axios.delete(`${API_URL}/cart/${itemId}`);
+    return response.data;
+};
+
+// Checkout services
+export const createOrder = async (orderData) => {
+    const response = await axios.post(`${API_URL}/orders`, orderData);
+    return response.data;
+};
+
+// Order tracking services
+export const trackOrder = async (orderId) => {
+    const response = await axios.get(`${API_URL}/orders/track/${orderId}`);
+    return response.data;
+};
+
+// User account services
+export const fetchUserProfile = async () => {
+    const response = await axios.get(`${API_URL}/users/profile`);
+    return response.data;
+};
+
+export const updateUserProfile = async (profileData) => {
+    const response = await axios.put(`${API_URL}/users/profile`, profileData);
+    return response.data;
+};
+
+// Admin services
+export const fetchAdminProducts = async () => {
+    const response = await axios.get(`${API_URL}/admin/products`);
+    return response.data;
+};
+
+export const addAdminProduct = async (productData) => {
+    const response = await axios.post(`${API_URL}/admin/products`, productData);
+    return response.data;
+};
+
+export const updateAdminProduct = async (productId, productData) => {
+    const response = await axios.put(`${API_URL}/admin/products/${productId}`, productData);
+    return response.data;
+};
+
+export const deleteAdminProduct = async (productId) => {
+    const response = await axios.delete(`${API_URL}/admin/products/${productId}`);
+    return response.data;
+};

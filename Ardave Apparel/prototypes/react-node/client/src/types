@@ -1,0 +1,63 @@
+// This file contains TypeScript type definitions used throughout the client application.
+
+// User type definition
+export interface User {
+    id: string;
+    username: string;
+    email: string;
+    password?: string; // Optional for security reasons
+    role: 'customer' | 'admin';
+}
+
+// Product type definition
+export interface Product {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    stock: number;
+    images: string[];
+    categories: string[];
+    variants: Variant[];
+}
+
+// Variant type definition
+export interface Variant {
+    id: string;
+    size: string;
+    color: string;
+    stock: number;
+}
+
+// Cart item type definition
+export interface CartItem {
+    productId: string;
+    quantity: number;
+    selectedVariant?: Variant; // Optional, in case of product variants
+}
+
+// Order type definition
+export interface Order {
+    id: string;
+    userId: string;
+    items: OrderItem[];
+    total: number;
+    status: 'Pending' | 'Confirmed' | 'Processing' | 'Ready to Ship' | 'Shipped' | 'Delivered' | 'Cancelled';
+    createdAt: Date;
+}
+
+// Order item type definition
+export interface OrderItem {
+    productId: string;
+    quantity: number;
+    price: number;
+}
+
+// Checkout form type definition
+export interface CheckoutForm {
+    name: string;
+    contactNumber: string;
+    email: string;
+    address: string;
+    orderNotes?: string; // Optional
+}

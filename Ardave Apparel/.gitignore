@@ -1,0 +1,4 @@
+.env
+.env.*
+!.env.example
+/API/otp_store.json

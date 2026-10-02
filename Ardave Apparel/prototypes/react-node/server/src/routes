@@ -1,0 +1,44 @@
+// This file contains route definitions for the API endpoints of the ARDAVE APPAREL e-commerce system.
+
+import express from 'express';
+import { authenticateUser, registerUser, logoutUser } from '../controllers/authController';
+import { getProducts, getProductById, createProduct, updateProduct, deleteProduct } from '../controllers/productController';
+import { addToCart, getCart, updateCartItem, removeCartItem } from '../controllers/cartController';
+import { createOrder, getOrderById, getUserOrders } from '../controllers/orderController';
+import { trackOrder } from '../controllers/trackController';
+import { getUserProfile, updateUserProfile } from '../controllers/userController';
+import { adminAuth } from '../middleware/authMiddleware';
+
+const router = express.Router();
+
+// Authentication routes
+router.post('/auth/register', registerUser);
+router.post('/auth/login', authenticateUser);
+router.post('/auth/logout', logoutUser);
+
+// Product routes
+router.get('/products', getProducts);
+router.get('/products/:id', getProductById);
+router.post('/products', adminAuth, createProduct);
+router.put('/products/:id', adminAuth, updateProduct);
+router.delete('/products/:id', adminAuth, deleteProduct);
+
+// Cart routes
+router.post('/cart', addToCart);
+router.get('/cart', getCart);
+router.put('/cart/:itemId', updateCartItem);
+router.delete('/cart/:itemId', removeCartItem);
+
+// Order routes
+router.post('/orders', createOrder);
+router.get('/orders/:id', getOrderById);
+router.get('/orders', getUserOrders);
+
+// Track order route
+router.get('/track/:orderId', trackOrder);
+
+// User profile routes
+router.get('/profile', getUserProfile);
+router.put('/profile', updateUserProfile);
+
+export default router;
